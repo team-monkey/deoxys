@@ -20,24 +20,24 @@ class Window(Frame):
         self.mutRateLabel = Label(master, text=" Rate of mutation ")
 
         self.quitButton = Button(master, text="Cancel", command=self.quit)
-        self.clearButton = Button(master, text="Clear")#FIXME: add command
+        self.clearButton = Button(master, text="Clear", command=lambda: self.clearBoxes())
         self.startButton = Button(master, text="Start", command=lambda: self.startSim())
 
         #L A Y OU   T
         self.label.grid(row=0, column=0, columnspan=3, sticky=N)
 
-        self.teamNumLabel.grid(row=1, column=0, sticky=E)
-        self.teamNum.grid(row=1, column=1, columnspan=2, sticky=E)
+        self.teamNumLabel.grid(row=1, column=0, columnspan=2, sticky=E)
+        self.teamNum.grid(row=1, column=3, columnspan=2, sticky=E)
         
-        self.iterationsLabel.grid(row=2, column=0, sticky=E)
-        self.iterations.grid(row=2, column=1, columnspan=2, sticky=E)
+        self.iterationsLabel.grid(row=2, column=0, columnspan=2, sticky=E)
+        self.iterations.grid(row=2, column=3, columnspan=2, sticky=E)
 
-        self.mutRateLabel.grid(row=3, column=0, sticky=E)
-        self.mutRate.grid(row=3, column=1, columnspan=2, sticky=E)
+        self.mutRateLabel.grid(row=3, column=0, columnspan=2, sticky=E)
+        self.mutRate.grid(row=3, column=3, columnspan=2, sticky=E)
 
         self.quitButton.grid(row=4, column=0, sticky=W+E)
-        self.clearButton.grid(row=4, column=1, sticky=S+W+E)
-        self.startButton.grid(row=4, column=2, sticky=W+E)
+        self.clearButton.grid(row=4, column=1, columnspan=3, sticky=W+E)
+        self.startButton.grid(row=4, column=4, sticky=W+E)
 
     def validate(self, new_text):
         if not new_text:
@@ -48,6 +48,11 @@ class Window(Frame):
             return True
         except ValueError:
             return False
+
+    def clearBoxes(self):
+        self.teamNum.delete(first=0, last=END)
+        self.iterations.delete(first=0, last=END)
+        self.mutRate.delete(first=0, last=END)
 
     def startSim(self):
         tn = int(self.teamNum.get())

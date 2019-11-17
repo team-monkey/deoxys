@@ -7,7 +7,7 @@ class Window(Frame):
         self.master = master
         self.master.title("Pokévolution")
 
-        self.label = Label(master, text="Pokévolution Clusterfuck")#heehee bad word XD
+        self.label = Label(master, text="Pokévolution Simulator")#heehee bad word XD
         vcmd = master.register(self.validate)
 
         self.teamNum = Entry(master, validate="key", validatecommand=(vcmd, '%P'))
